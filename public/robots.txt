@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Disallow: /login
+Disallow: /logout
+Disallow: /admin
+Disallow: /admin/
+Disallow: /therapist
+Disallow: /therapist/
+Disallow: /trainee
+Disallow: /trainee/
+Disallow: /coordinator
+Disallow: /coordinator/
+
+Sitemap: /sitemap.xml

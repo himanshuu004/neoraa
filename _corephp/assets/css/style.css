@@ -1,0 +1,1044 @@
+/* ============================================================================
+   NEORA Dashboard — Theme Variables & Google Fonts
+   Primary: #df5589 (Pink)  |  Green: #a1c44a  |  Cream BG: #fdf4f8
+   Fonts: Cormorant Upright (headings) + Sora (body)
+   ============================================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --nd-primary:      #df5589;
+  --nd-primary-dark: #c44478;
+  --nd-primary-rgb:  223, 85, 137;
+  --nd-green:        #a1c44a;
+  --nd-bg:           #fdf4f8;
+  --nd-bg-light:     #fff9fc;
+  --nd-dark:         #1A1A1A;
+  --nd-gray:         #777F81;
+  --nd-border:       #f0d8e4;
+  --nd-heading-font: "Cormorant Upright", serif;
+  --nd-body-font:    "Sora", sans-serif;
+}
+
+/* ============================================================================
+   MOBILE-FIRST RESPONSIVE DESIGN
+   ============================================================================ */
+
+/* Base body */
+body {
+  font-family: var(--nd-body-font);
+  font-size: 14px;
+  background: var(--nd-bg);
+  color: var(--nd-dark);
+}
+
+@media (min-width: 768px) {
+  body { font-size: 15px; }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--nd-heading-font);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* ============================================================================
+   NAVBAR — NEORA themed, responsive
+   ============================================================================ */
+.navbar {
+  background: #fff !important;
+  border-bottom: 2px solid var(--nd-primary) !important;
+  box-shadow: 0 2px 12px rgba(223, 85, 137, 0.12);
+  padding-top: 0;
+  padding-bottom: 0;
+  min-height: 64px;
+}
+
+.navbar-brand {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.navbar-brand img {
+  filter: none !important;
+  -webkit-filter: none !important;
+}
+
+/* Hamburger button — pink */
+#mobileMenuBtn {
+  color: var(--nd-primary) !important;
+  border: 1.5px solid rgba(223, 85, 137, 0.3);
+  border-radius: 8px;
+  padding: 0.4rem 0.6rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+#mobileMenuBtn:hover {
+  background: rgba(223, 85, 137, 0.08);
+  border-color: var(--nd-primary);
+}
+
+/* ============================================================================
+   MENU OVERLAY / SLIDE-OUT DRAWER
+   ============================================================================ */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(26, 26, 26, 0.55);
+  z-index: 1050;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding-top: 64px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+}
+
+.menu-overlay-content {
+  background: #fff;
+  width: 100%;
+  max-width: 300px;
+  height: calc(100vh - 64px);
+  overflow-y: auto;
+  padding: 0;
+  box-shadow: -4px 0 20px rgba(223, 85, 137, 0.15);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-overlay.active .menu-overlay-content {
+  transform: translateX(0);
+}
+
+/* Drawer header with pink gradient */
+.menu-drawer-header {
+  background: linear-gradient(135deg, var(--nd-primary) 0%, #c44478 100%);
+  padding: 1.25rem 1.25rem 1rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.menu-drawer-header .menu-title {
+  font-family: var(--nd-heading-font);
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin: 0 0 0.5rem 0;
+  color: #fff;
+}
+
+.menu-drawer-header .menu-username {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+}
+
+.menu-drawer-header .menu-greeting {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 0.25rem;
+}
+
+.menu-drawer-header .menu-time {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.25rem;
+}
+
+.menu-drawer-close {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: none !important;
+  border-radius: 50% !important;
+  width: 28px !important;
+  height: 28px !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.menu-drawer-close:hover {
+  background: rgba(255, 255, 255, 0.35) !important;
+}
+
+.menu-drawer-close .btn-close {
+  filter: invert(1) brightness(2) !important;
+  opacity: 1 !important;
+  width: 14px !important;
+  height: 14px !important;
+  background-size: 14px !important;
+}
+
+/* Drawer nav body */
+.menu-drawer-body {
+  padding: 0.75rem 0.75rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Navigation Links in Overlay */
+.nav-link-overlay {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  color: #353535;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.65rem 0.875rem;
+  text-decoration: none !important;
+  margin-bottom: 2px;
+}
+
+.nav-link-overlay i {
+  width: 22px;
+  text-align: center;
+  color: var(--nd-primary);
+  flex-shrink: 0;
+}
+
+.nav-link-overlay:hover {
+  background-color: rgba(223, 85, 137, 0.08);
+  color: var(--nd-primary);
+  transform: translateX(4px);
+}
+
+.nav-link-overlay:active {
+  background-color: rgba(223, 85, 137, 0.14);
+}
+
+.nav-link-overlay.text-danger {
+  color: #dc3545 !important;
+}
+
+.nav-link-overlay.text-danger i {
+  color: #dc3545 !important;
+}
+
+.nav-link-overlay.text-danger:hover {
+  background-color: #fff0f0;
+  color: #dc3545 !important;
+  transform: translateX(4px);
+}
+
+/* Divider in drawer */
+.menu-drawer-divider {
+  border: none;
+  border-top: 1px solid var(--nd-border);
+  margin: 0.5rem 0;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .menu-overlay {
+    padding-top: 64px;
+  }
+
+  .menu-overlay-content {
+    max-width: 100%;
+    height: calc(100vh - 64px);
+  }
+
+  .nav-link-overlay {
+    min-height: 50px;
+    font-size: 0.95rem;
+  }
+}
+
+/* ============================================================================
+   MAIN CONTENT
+   ============================================================================ */
+.main-content {
+  min-height: 100vh;
+  background: var(--nd-bg);
+  padding-top: 0;
+}
+
+/* ============================================================================
+   GREETING BANNER
+   ============================================================================ */
+.greeting-banner {
+  background: linear-gradient(135deg, var(--nd-primary) 0%, #c44478 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(223, 85, 137, 0.25);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.greeting-banner .greeting-text {
+  color: rgba(255,255,255,0.9);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.greeting-banner .greeting-name {
+  color: #fff;
+  font-weight: 700;
+}
+
+.greeting-banner .time-badge {
+  background: rgba(255,255,255,0.2);
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ============================================================================
+   CARDS
+   ============================================================================ */
+.card {
+  border: 1px solid var(--nd-border);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(223, 85, 137, 0.06);
+  margin-bottom: 1rem;
+  background: #fff;
+}
+
+@media (min-width: 768px) {
+  .card { margin-bottom: 1.5rem; }
+}
+
+.card-header {
+  background: var(--nd-bg-light);
+  border-bottom: 1px solid var(--nd-border);
+  border-radius: 12px 12px 0 0 !important;
+  font-weight: 600;
+  padding: 0.85rem 1.1rem;
+  font-family: var(--nd-heading-font);
+  font-size: 1.05rem;
+  color: var(--nd-dark);
+}
+
+@media (min-width: 768px) {
+  .card-header { padding: 1rem 1.5rem; font-size: 1.1rem; }
+}
+
+/* ============================================================================
+   TABLES
+   ============================================================================ */
+.table {
+  background: #fff;
+  font-size: 0.875rem;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--nd-border);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(223, 85, 137, 0.06);
+  background: #fff;
+  margin-bottom: 1rem;
+}
+
+/* DataTables Responsive Styles */
+.dataTables_wrapper {
+  width: 100%;
+}
+
+.dataTables_wrapper .dataTables_scroll {
+  overflow-x: auto;
+}
+
+.dataTables_wrapper .dataTables_scrollBody {
+  border-bottom: 1px solid var(--nd-border);
+}
+
+/* Therapists Table */
+#therapistsTable {
+  font-size: 0.875rem;
+}
+
+#therapistsTable thead th {
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 0.75rem 0.5rem;
+}
+
+#therapistsTable tbody td {
+  padding: 0.75rem 0.5rem;
+  vertical-align: middle;
+}
+
+#therapistsTable .text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  #therapistsTable { font-size: 0.8rem; }
+  #therapistsTable thead th { font-size: 0.75rem; padding: 0.5rem 0.25rem; }
+  #therapistsTable tbody td { padding: 0.5rem 0.25rem; }
+  #therapistsTable .btn-group-sm .btn { padding: 0.2rem 0.4rem; font-size: 0.75rem; }
+}
+
+/* DataTables responsive child row */
+table.dataTable.dtr-inline.collapsed > tbody > tr > td.child,
+table.dataTable.dtr-inline.collapsed > tbody > tr > th.child,
+table.dataTable.dtr-inline.collapsed > tbody > tr > td.dataTables_empty {
+  cursor: default !important;
+}
+
+table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:before,
+table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:before {
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0.5rem;
+}
+
+/* Button Groups in Tables */
+.btn-group {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.btn-group .btn {
+  min-width: 36px;
+}
+
+@media (max-width: 767px) {
+  .table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .table {
+    min-width: 600px;
+    width: 100%;
+  }
+}
+
+/* ============================================================================
+   BUTTONS
+   ============================================================================ */
+.btn {
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  touch-action: manipulation;
+  font-family: var(--nd-body-font);
+}
+
+.btn-sm {
+  min-height: 38px;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.btn-xs {
+  min-height: 32px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .btn { min-height: auto; }
+  .btn-sm { min-height: auto; padding: 0.25rem 0.5rem; }
+}
+
+/* Primary button — NEORA pink */
+.btn-primary {
+  background-color: var(--nd-primary) !important;
+  border-color: var(--nd-primary) !important;
+  color: #fff !important;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: var(--nd-primary-dark) !important;
+  border-color: var(--nd-primary-dark) !important;
+  box-shadow: 0 4px 12px rgba(var(--nd-primary-rgb), 0.3) !important;
+}
+
+/* ============================================================================
+   NAV TABS
+   ============================================================================ */
+.nav-tabs {
+  border-bottom: 2px solid var(--nd-border);
+}
+
+.nav-tabs .nav-link {
+  border: none;
+  color: #6c757d;
+}
+
+.nav-tabs .nav-link.active {
+  color: var(--nd-primary);
+  border-bottom: 2px solid var(--nd-primary);
+  background: transparent;
+}
+
+/* ============================================================================
+   DATATABLES CUSTOMIZATION
+   ============================================================================ */
+.dataTables_wrapper .dataTables_filter input {
+  margin-left: 0.5rem;
+}
+
+/* Ensure text is readable on mobile */
+h1, h2, h3, h4, h5, h6 {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Container Padding - Mobile First */
+.container-fluid {
+  padding: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .container-fluid { padding: 1rem 1.5rem; }
+}
+
+/* ============================================================================
+   TIMETABLE GRID
+   ============================================================================ */
+#timetableGrid {
+  font-size: 0.875rem;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+#timetableGrid thead th {
+  background: var(--nd-primary);
+  color: white;
+  font-weight: 600;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 0.75rem 0.5rem;
+  border: 1px solid var(--nd-primary-dark);
+}
+
+#timetableGrid thead th:first-child {
+  background: var(--nd-primary-dark);
+  z-index: 11;
+}
+
+#timetableGrid tbody td:first-child {
+  font-weight: 600;
+  background: var(--nd-bg-light);
+  position: sticky;
+  left: 0;
+  z-index: 5;
+  border-right: 2px solid var(--nd-border);
+  padding: 0.75rem;
+}
+
+#timetableGrid .kid-select {
+  width: 100%;
+  min-width: 120px;
+  font-size: 0.85rem;
+  padding: 0.4rem;
+  border: 1px solid var(--nd-border);
+  border-radius: 0.25rem;
+  transition: all 0.2s;
+}
+
+#timetableGrid .kid-select:hover {
+  border-color: var(--nd-primary);
+  box-shadow: 0 0 0 0.2rem rgba(var(--nd-primary-rgb), 0.1);
+}
+
+#timetableGrid .kid-select:focus {
+  border-color: var(--nd-primary);
+  box-shadow: 0 0 0 0.2rem rgba(var(--nd-primary-rgb), 0.25);
+  outline: 0;
+}
+
+#timetableGrid tbody tr:hover {
+  background: var(--nd-bg);
+}
+
+#timetableGrid tbody tr:hover td:first-child {
+  background: #f5dde9;
+}
+
+#timetableGrid tbody td {
+  padding: 0.5rem;
+  vertical-align: middle;
+  border: 1px solid var(--nd-border);
+  background: white;
+}
+
+#timetableGrid tbody td:not(:first-child) {
+  text-align: center;
+}
+
+/* ============================================================================
+   FORM CONTROLS
+   ============================================================================ */
+.form-control, .form-select {
+  min-height: 44px;
+  font-size: 16px;
+  touch-action: manipulation;
+  border-color: var(--nd-border);
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--nd-primary);
+  box-shadow: 0 0 0 0.2rem rgba(var(--nd-primary-rgb), 0.2);
+}
+
+.form-control[readonly] {
+  background-color: var(--nd-bg);
+  cursor: not-allowed;
+}
+
+@media (min-width: 768px) {
+  .form-control, .form-select {
+    min-height: auto;
+    font-size: 1rem;
+  }
+}
+
+.form-label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #495057;
+}
+
+.form-text {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-top: 0.25rem;
+}
+
+/* Info Display Styles */
+.info-value {
+  padding: 0.5rem 0.75rem;
+  background-color: var(--nd-bg);
+  border: 1px solid var(--nd-border);
+  border-radius: 0.375rem;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  color: #212529;
+  font-size: 0.95rem;
+}
+
+@media (min-width: 768px) {
+  .info-value { min-height: auto; padding: 0.375rem 0.75rem; }
+}
+
+.input-group .btn {
+  min-height: 44px;
+}
+
+@media (min-width: 768px) {
+  .input-group .btn { min-height: auto; }
+}
+
+/* ============================================================================
+   GREETING SECTION (legacy, keep for compat)
+   ============================================================================ */
+.greeting-section .card-body {
+  padding: 1rem;
+}
+
+.greeting-section h3 {
+  font-size: 1.1rem;
+  word-wrap: break-word;
+}
+
+.ist-time-display {
+  text-align: left;
+  margin-top: 0.75rem;
+}
+
+.ist-time-display span {
+  font-size: 1.1rem;
+}
+
+@media (min-width: 768px) {
+  .greeting-section .card-body { padding: 1.5rem; }
+  .greeting-section h3 { font-size: 1.5rem; }
+  .ist-time-display { text-align: right; margin-top: 0; }
+  .ist-time-display span { font-size: 1.5rem; }
+}
+
+/* ============================================================================
+   TIMETABLE GRID VIEW (read-only)
+   ============================================================================ */
+.timetable-grid-view {
+  width: 100%;
+  font-size: 0.7rem;
+  min-width: 600px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.timetable-grid-view .time-column {
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
+  background-color: var(--nd-bg);
+  font-weight: 600;
+  text-align: center;
+  position: sticky;
+  left: 0;
+  z-index: 15;
+  border-right: 2px solid var(--nd-border);
+  font-size: 0.7rem;
+  padding: 6px 3px !important;
+}
+
+.timetable-grid-view .day-column {
+  min-width: 140px;
+  width: 140px;
+  max-width: 140px;
+  text-align: center;
+  vertical-align: top;
+  padding: 4px 3px !important;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .timetable-grid-view {
+    font-size: 0.75rem;
+    min-width: auto;
+  }
+  .timetable-grid-view .time-column {
+    width: 140px; min-width: 140px; max-width: 140px;
+    font-size: 0.8rem; padding: 8px 4px !important;
+  }
+  .timetable-grid-view .day-column {
+    min-width: 180px; width: 180px; max-width: 180px;
+    padding: 6px 4px !important;
+  }
+}
+
+.timetable-grid-view thead th {
+  background-color: #f5dde9;
+  font-weight: 600;
+  text-align: center;
+  padding: 10px 4px !important;
+  border: 1px solid var(--nd-border);
+  font-size: 0.8rem;
+}
+
+.timetable-grid-view thead th.time-column {
+  background-color: #eecbd9;
+  border-right: 2px solid #d8a8bf;
+}
+
+.timetable-grid-view tbody td {
+  border: 1px solid var(--nd-border);
+  background-color: #fff;
+  transition: background-color 0.2s;
+  padding: 6px 4px !important;
+}
+
+.timetable-grid-view tbody td:hover {
+  background-color: rgba(223, 85, 137, 0.04) !important;
+  box-shadow: inset 0 0 0 2px var(--nd-primary);
+}
+
+.timetable-grid-view .cell-content {
+  min-height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.timetable-grid-view .cell-content-readonly {
+  padding: 4px 2px;
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+}
+
+.timetable-grid-view .kid-select {
+  font-size: 0.7rem;
+  padding: 3px 4px;
+  width: 100%;
+  height: auto;
+  line-height: 1.3;
+}
+
+.timetable-grid-view .cell-actions {
+  display: flex;
+  gap: 3px;
+  justify-content: center;
+  margin-top: 3px;
+}
+
+.timetable-grid-view .btn-xs {
+  padding: 2px 4px;
+  font-size: 0.65rem;
+  line-height: 1.2;
+}
+
+.timetable-grid-view .cell-editable {
+  min-height: 90px;
+  padding: 4px !important;
+}
+
+.timetable-grid-container {
+  overflow-x: auto;
+  overflow-y: visible;
+  max-height: 75vh;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .timetable-grid-container { max-height: 85vh; }
+}
+
+.timetable-grid-view .cell-content small {
+  font-size: 0.65rem;
+  line-height: 1.2;
+  margin-top: 2px !important;
+}
+
+.timetable-grid-view .cell-content-readonly strong {
+  font-size: 0.75rem;
+  line-height: 1.3;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.timetable-grid-view .cell-content-readonly small {
+  font-size: 0.65rem;
+  margin-top: 2px;
+}
+
+/* ============================================================================
+   KIDS TABLE
+   ============================================================================ */
+#kidsTable {
+  font-size: 0.875rem;
+}
+
+#kidsTable thead th {
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 0.75rem 0.5rem;
+}
+
+#kidsTable tbody td {
+  padding: 0.75rem 0.5rem;
+  vertical-align: middle;
+}
+
+#kidsTable img.img-thumbnail {
+  border-radius: 0.5rem;
+  border: 2px solid var(--nd-border);
+}
+
+#kidsTable tbody td img.img-thumbnail {
+  border: 2px solid var(--nd-border);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#kidsTable tbody td img.img-thumbnail:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(223, 85, 137, 0.2);
+  cursor: pointer;
+}
+
+#kidsTable tbody td .fa-user-circle {
+  color: #adb5bd;
+  opacity: 0.6;
+}
+
+#kidsTable tbody td .badge {
+  font-size: 0.85rem;
+  padding: 0.35rem 0.65rem;
+  font-weight: 500;
+}
+
+#kidsTableBody .alert { margin: 1rem; }
+#kidsTableBody .alert .btn { margin-top: 0.5rem; }
+#kidsTableBody .spinner-border { color: var(--nd-primary); }
+#kidsTableBody .fa-users { color: #adb5bd; margin-bottom: 1rem; }
+
+@media (max-width: 768px) {
+  #kidsTable { font-size: 0.8rem; }
+  #kidsTable thead th { font-size: 0.75rem; padding: 0.5rem 0.25rem; }
+  #kidsTable tbody td { padding: 0.5rem 0.25rem; }
+  #kidsTable tbody td img.img-thumbnail { max-width: 40px !important; max-height: 40px !important; }
+  #kidsTable tbody td .fa-user-circle { font-size: 1.5rem !important; }
+  #kidsTable tbody td .badge { font-size: 0.75rem; padding: 0.25rem 0.5rem; }
+  #kidsTable .btn-group { flex-direction: column; }
+  #kidsTable .btn-group .btn { border-radius: 0.25rem !important; margin-bottom: 0.25rem; }
+}
+
+/* Image preview styles for modals */
+#imagePreview, #editImagePreview, #editNewImagePreview {
+  text-align: center;
+  padding: 1rem;
+  background: var(--nd-bg);
+  border-radius: 0.5rem;
+}
+
+#imagePreview img, #editImagePreview img, #editNewImagePreview img {
+  border: 2px solid var(--nd-border);
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+#imagePreview img:hover, #editImagePreview img:hover, #editNewImagePreview img:hover {
+  transform: scale(1.05);
+}
+
+/* Custom time slot form styles */
+#customTimeSlotForm {
+  background: linear-gradient(135deg, var(--nd-bg) 0%, #f5dde9 100%);
+  border: 2px solid var(--nd-border);
+  border-radius: 0.5rem;
+}
+
+#customTimeSlotForm .card-title {
+  color: #495057;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Cell edit popup styles */
+.cell-popup-edit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border: 2px solid var(--nd-primary);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 20;
+  min-width: 200px;
+}
+
+.cell-normal-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cell-kid-name {
+  font-weight: 600;
+  color: #495057;
+  font-size: 0.85rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.cell-edit-btn { font-size: 0.75rem; padding: 0.25rem 0.5rem; }
+
+/* Filter row styles */
+.row.g-2.mb-3 { margin-bottom: 1rem; }
+.row.g-2.mb-3 .form-control { font-size: 0.875rem; }
+
+@media (max-width: 768px) {
+  .row.g-2.mb-3 .form-control { font-size: 0.8rem; min-height: 38px; }
+}
+
+/* DataTable pagination/info */
+.dataTables_wrapper .dataTables_info {
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.dataTables_wrapper .dataTables_paginate { padding-top: 1rem; }
+
+.dataTables_wrapper .dataTables_length select {
+  padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+  border: 1px solid var(--nd-border);
+  border-radius: 0.375rem;
+}
+
+/* Action buttons in kids table */
+#kidsTable .btn-group .btn-info {
+  background-color: #0dcaf0;
+  border-color: #0dcaf0;
+  color: #000;
+}
+#kidsTable .btn-group .btn-info:hover {
+  background-color: #31d2f2;
+  border-color: #25cff2;
+}
+#kidsTable .btn-group .btn-danger:hover {
+  background-color: #bb2d3b;
+  border-color: #b02a37;
+}
+
+/* ============================================================================
+   PROFILE PICTURE  — used in dashboard inline styles override
+   ============================================================================ */
+.profile-picture {
+  border: 3px solid var(--nd-primary) !important;
+}
+
+.profile-picture-default {
+  background: linear-gradient(135deg, var(--nd-primary) 0%, var(--nd-primary-dark) 100%) !important;
+  border: 3px solid var(--nd-primary) !important;
+}
+
+/* ============================================================================
+   STAT / SUMMARY CARDS
+   ============================================================================ */
+.stat-card {
+  border-radius: 14px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 2px 12px rgba(223,85,137,.08);
+  border: 1px solid var(--nd-border);
+  background: #fff;
+}
+
+.stat-icon {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.stat-num  { font-size: 1.8rem; font-weight: 700; line-height: 1; color: var(--nd-dark); }
+.stat-lbl  { font-size: .78rem; color: #888; font-weight: 500; margin-top: 3px; }
+
+/* ============================================================================
+   APPLICATION CARD (application.php)
+   ============================================================================ */
+.app-card { border-left: 4px solid var(--nd-primary) !important; transition: box-shadow 0.2s; }
+.app-card:hover { box-shadow: 0 4px 12px rgba(223,85,137,.12) !important; }

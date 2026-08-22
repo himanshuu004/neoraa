@@ -1,0 +1,13 @@
+# cPanel: keep Laravel files in public_html, expose only /public
+<Files ".env">
+    Require all denied
+</Files>
+<FilesMatch "^\.env">
+    Require all denied
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
